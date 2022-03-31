@@ -44,15 +44,25 @@ while (i < pokemonsEl.length) {
   pokemonsEl[i].onclick = function() {
     var pokemonName = this.dataset.pokemon
     var player1Img = document.querySelector('.player1').getElementsByTagName('img')
+    var player2Img = document.querySelector('.player2').getElementsByTagName('img')
     
     gameState.userPokemon = pokemonName
 
     cpuPick()
     battleScreenEl.classList.toggle('active')
-    
-    player1Img[0].src = 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
+        
+    var currentPokemon = pokemonDB.filter(function(pokemon) {
+      return pokemon.name == gameState.userPokemon
+    })
 
-    console.log(player1Img[0])
+    var currentRivalPokemon = pokemonDB.filter(function(pokemon) {
+      return pokemon.name == gameState.rivalPokemon
+    })
+    
+    player1Img[0].src = currentPokemon[0].img
+    player2Img[0].src = currentRivalPokemon[0].img
+
+    console.log(currentPokemon)
   }
   i++
 }
