@@ -1,4 +1,4 @@
-var pokemons = [
+var pokemonDB = [
     {
       name: 'charmander',
       type: 'fire',
@@ -6,7 +6,7 @@ var pokemons = [
       attack: 52,
       defense: 43,
       level: 1,
-      img: 'www.smogon.com/dex/media/sprites/xy/charmander.gif'
+      img: 'http://www.smogon.com/dex/media/sprites/xy/charmander.gif'
     },
     {
       name: 'bulbasaur',
@@ -15,7 +15,7 @@ var pokemons = [
       attack: 49,
       defense: 49,
       level: 1,
-      img: 'www.smogon.com/dex/media/sprites/xy/bulbasaur.gif'
+      img: 'http://www.smogon.com/dex/media/sprites/xy/bulbasaur.gif'
     },
     {
       name: 'squirtle',
@@ -24,7 +24,7 @@ var pokemons = [
       attack: 48,
       defense: 65,
       level: 1,
-      img: 'www.smogon.com/dex/media/sprites/xy/squirtle.gif'
+      img: 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
     },
   ]
 
@@ -43,11 +43,16 @@ var i = 0
 while (i < pokemonsEl.length) {
   pokemonsEl[i].onclick = function() {
     var pokemonName = this.dataset.pokemon
+    var player1Img = document.querySelector('.player1').getElementsByTagName('img')
+    
     gameState.userPokemon = pokemonName
 
     cpuPick()
     battleScreenEl.classList.toggle('active')
-    console.log(gameState)
+    
+    player1Img[0].src = 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
+
+    console.log(player1Img[0])
   }
   i++
 }
