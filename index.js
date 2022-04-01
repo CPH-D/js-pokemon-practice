@@ -1,3 +1,4 @@
+// dataBase for pokemon characters
 var pokemonDB = [
     {
       name: 'charmander',
@@ -28,51 +29,91 @@ var pokemonDB = [
     },
   ]
 
+// state
 var gameState = {
   userPokemon: '',
   rivalPokemon: ''
 }
 console.log(gameState)
 
+// elements
 var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character')
 
-console.log(pokemonsEl)
 
 var battleScreenEl = document.getElementById('battle-screen')
 var i = 0
+
+// initial loop for character selection
 while (i < pokemonsEl.length) {
+  // add function to all characters on screen select
   pokemonsEl[i].onclick = function() {
+    // current selected pokemons name
     var pokemonName = this.dataset.pokemon
+
+    // elements for images on battle screen
     var player1Img = document.querySelector('.player1').getElementsByTagName('img')
     var player2Img = document.querySelector('.player2').getElementsByTagName('img')
     
+    // we save the current pokemon
     gameState.userPokemon = pokemonName
 
+    // cpu pics a pokemon 
     cpuPick()
+
+    // change screen to battle scene
     battleScreenEl.classList.toggle('active')
         
+    // select data from current user pokemon
     var currentPokemon = pokemonDB.filter(function(pokemon) {
       return pokemon.name == gameState.userPokemon
     })
+    player1Img[0].src = currentPokemon[0].img
 
+    // select data from current cpu pokemon
     var currentRivalPokemon = pokemonDB.filter(function(pokemon) {
       return pokemon.name == gameState.rivalPokemon
     })
-    
-    player1Img[0].src = currentPokemon[0].img
     player2Img[0].src = currentRivalPokemon[0].img
 
-    console.log(currentPokemon)
+
+    // player chooses attack
+
+    
+    // cpu health goes down
+
+
+    // cpu attack
+
+
+    // player health goes down
+
+
+    // rock > scissors
+
+    
+    // paper > rock
+    
+    
+    // scissors > paper
+
+
+    // depending on pokemon type and defense is how hard the attack is going to be and how much health it will take out
+
+
+    // then who ever get to health <= 0 loses
+
+    
   }
   i++
 }
 
 
-function randomNumber(min, max){
+var randomNumber = function(min, max){
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function cpuPick() {
+
+var cpuPick = function() {
   gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon
 }
 
