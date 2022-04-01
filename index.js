@@ -38,12 +38,14 @@ console.log(gameState)
 
 // elements
 var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character')
-
-
 var battleScreenEl = document.getElementById('battle-screen')
-var i = 0
+
+var attackBtnsEl = document.getElementById('battle-screen').querySelectorAll('.attack')
+console.log(attackBtnsEl)
+
 
 // initial loop for character selection
+var i = 0
 while (i < pokemonsEl.length) {
   // add function to all characters on screen select
   pokemonsEl[i].onclick = function() {
@@ -105,6 +107,17 @@ while (i < pokemonsEl.length) {
     
   }
   i++
+}
+
+
+var a = 0
+while (a < attackBtnsEl.length) {
+  attackBtnsEl[a].onclick = function() {
+    var attackName = this.dataset.attack
+    gameState.currentUserAttack = attackName
+    console.log(gameState.currentUserAttack)
+  }
+  a++
 }
 
 
