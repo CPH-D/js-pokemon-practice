@@ -115,9 +115,44 @@ while (a < attackBtnsEl.length) {
   attackBtnsEl[a].onclick = function() {
     var attackName = this.dataset.attack
     gameState.currentUserAttack = attackName
-    console.log(gameState.currentUserAttack)
+    
+    play(attackName, cpuAttack())
   }
   a++
+}
+
+
+var cpuAttack = function() {
+  var attacks = ['rock', 'paper', 'scissors']
+
+  return attacks [randomNumber(0, 3)]
+}
+
+
+var play = function(userAttack, cpuAttack) {
+  switch(userAttack){
+    case 'rock':
+      if(cpuAttack == 'paper'){
+        console.log('You picked rock, cpu picked paper. We lost health!')
+      }
+
+      if(cpuAttack == 'scissors'){
+        console.log('You picked rock, cpu picked scissors. Cpu took damage!')
+      }
+
+      if(cpuAttack == 'rock'){
+        console.log('You picked rock, cpu picked rock. It\'s a draw!')
+      }
+
+      console.log(userAttack)
+        break;
+      case 'paper':
+      console.log(userAttack)
+        break;
+      case 'scissors':
+      console.log(userAttack)
+        break;
+  }
 }
 
 
