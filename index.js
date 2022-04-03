@@ -66,17 +66,22 @@ while (i < pokemonsEl.length) {
     battleScreenEl.classList.toggle('active')
         
     // select data from current user pokemon
-    var currentPokemon = pokemonDB.filter(function(pokemon) {
+    gameState.currentPokemon = pokemonDB.filter(function(pokemon) {
       return pokemon.name == gameState.userPokemon
     })
-    player1Img[0].src = currentPokemon[0].img
+    player1Img[0].src = gameState.currentPokemon[0].img
 
     // select data from current cpu pokemon
-    var currentRivalPokemon = pokemonDB.filter(function(pokemon) {
+    gameState.currentRivalPokemon = pokemonDB.filter(function(pokemon) {
       return pokemon.name == gameState.rivalPokemon
     })
-    player2Img[0].src = currentRivalPokemon[0].img
+    player2Img[0].src = gameState.currentRivalPokemon[0].img
 
+
+
+    gameState.currentPokemon[0].health = calculateInitialHealth(gameState.currentPokemon)
+
+    console.log(gameState)
 
     // player chooses attack
 
@@ -129,6 +134,11 @@ var cpuAttack = function() {
 }
 
 
+var calculateInitialHealth = function(user) {
+  return ((0.20 * Math.sqrt(user[0].level)) * user[0].defense) * user[0].hp
+}
+
+
 var play = function(userAttack, cpuAttack) {
   switch(userAttack){
     case 'rock':
@@ -164,30 +174,6 @@ var randomNumber = function(min, max){
 var cpuPick = function() {
   gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
