@@ -78,9 +78,10 @@ while (i < pokemonsEl.length) {
     player2Img[0].src = gameState.currentRivalPokemon[0].img
 
 
-
+    // current user and cpu pokemon initial health
     gameState.currentPokemon[0].health = calculateInitialHealth(gameState.currentPokemon)
-
+    gameState.currentRivalPokemon[0].health = calculateInitialHealth(gameState.currentRivalPokemon)
+    
     console.log(gameState)
 
     // player chooses attack
