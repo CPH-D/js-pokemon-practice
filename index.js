@@ -158,25 +158,80 @@ var play = function(userAttack, cpuAttack) {
   switch(userAttack){
     case 'rock':
       if(cpuAttack == 'paper'){
-        attackMove(currentPokemon.attack, currentPokemon.level, .8, 5, currentRivalPokemon)
-        console.log('You picked rock, cpu picked paper. We lost health!')
+        // user
+        attackMove(currentPokemon.attack, currentPokemon.level, .8, .5, currentRivalPokemon)
+        // cpu
+        attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 2, currentPokemon)
+        // console.log('Paper defeats rock')
       }
 
       if(cpuAttack == 'scissors'){
-        console.log('You picked rock, cpu picked scissors. Cpu took damage!')
+        // user
+        attackMove(currentPokemon.attack, currentPokemon.level, .8, 2, currentRivalPokemon)
+        // cpu
+        attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, .5, currentPokemon)
+        // console.log('Rock defeats scissors')
       }
 
       if(cpuAttack == 'rock'){
-        console.log('You picked rock, cpu picked rock. It\'s a draw!')
+        // user
+        attackMove(currentPokemon.attack, currentPokemon.level, .8, 1, currentRivalPokemon)
+        // cpu
+        attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 1, currentPokemon)
+        // console.log('Both used rock')
       }
+      break;
 
-      console.log(userAttack)
-        break;
       case 'paper':
-      console.log(userAttack)
+        if(cpuAttack == 'paper'){
+          // user
+          attackMove(currentPokemon.attack, currentPokemon.level, .8, 1, currentRivalPokemon)
+          // cpu
+          attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 1, currentPokemon)
+          // console.log('Paper defeats rock')
+        }
+  
+        if(cpuAttack == 'scissors'){
+          // user
+          attackMove(currentPokemon.attack, currentPokemon.level, .8, .5, currentRivalPokemon)
+          // cpu
+          attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 2, currentPokemon)
+          // console.log('Rock defeats scissors')
+        }
+  
+        if(cpuAttack == 'rock'){
+          // user
+          attackMove(currentPokemon.attack, currentPokemon.level, .8, 2, currentRivalPokemon)
+          // cpu
+          attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, .5, currentPokemon)
+          // console.log('Both used rock')
+        }
         break;
+
       case 'scissors':
-      console.log(userAttack)
+        if(cpuAttack == 'paper'){
+          // user
+          attackMove(currentPokemon.attack, currentPokemon.level, .8, 2, currentRivalPokemon)
+          // cpu
+          attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, .5, currentPokemon)
+          // console.log('Paper defeats rock')
+        }
+  
+        if(cpuAttack == 'scissors'){
+          // user
+          attackMove(currentPokemon.attack, currentPokemon.level, .8, 1, currentRivalPokemon)
+          // cpu
+          attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 1, currentPokemon)
+          // console.log('Rock defeats scissors')
+        }
+  
+        if(cpuAttack == 'rock'){
+          // user
+          attackMove(currentPokemon.attack, currentPokemon.level, .8, .5, currentRivalPokemon)
+          // cpu
+          attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 2, currentPokemon)
+          // console.log('Both used rock')
+        }
         break;
   }
 }
