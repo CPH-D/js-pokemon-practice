@@ -141,12 +141,19 @@ var calculateInitialHealth = function(user) {
 
 
 var attackMove = function(attack, level, stack, critical, enemy) {
-  console.log('enemy.health before: ' + enemy.health)
+  console.log(enemy.name + ' before: ' + enemy.health)
 
   var attackAmount = ((attack * level ) * (stack + critical))
   enemy.health = enemy.health - attackAmount
+  checkWinner(enemy)
+  console.log(enemy.name + ' after: ' + enemy.health)
+}
 
-  console.log('enemy.health after: ' + enemy.health)
+
+var checkWinner = function(enemy) {
+  if(enemy.health <= 0) {
+    console.log('We have a winner!')
+  }
 }
 
 
@@ -158,79 +165,106 @@ var play = function(userAttack, cpuAttack) {
   switch(userAttack){
     case 'rock':
       if(cpuAttack == 'paper'){
+        if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
         // user
         attackMove(currentPokemon.attack, currentPokemon.level, .8, .5, currentRivalPokemon)
+        if(currentRivalPokemon.health > 0) {
         // cpu
         attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 2, currentPokemon)
-        // console.log('Paper defeats rock')
+        }
+      }
       }
 
       if(cpuAttack == 'scissors'){
+        if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
         // user
         attackMove(currentPokemon.attack, currentPokemon.level, .8, 2, currentRivalPokemon)
+        if(currentRivalPokemon.health > 0) {
         // cpu
         attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, .5, currentPokemon)
-        // console.log('Rock defeats scissors')
+        }
+      }
       }
 
       if(cpuAttack == 'rock'){
+        if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
         // user
         attackMove(currentPokemon.attack, currentPokemon.level, .8, 1, currentRivalPokemon)
+        if(currentRivalPokemon.health > 0) {
         // cpu
         attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 1, currentPokemon)
-        // console.log('Both used rock')
+        }
+      }
       }
       break;
 
       case 'paper':
         if(cpuAttack == 'paper'){
+          if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
           // user
           attackMove(currentPokemon.attack, currentPokemon.level, .8, 1, currentRivalPokemon)
+          if(currentRivalPokemon.health > 0) {
           // cpu
           attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 1, currentPokemon)
-          // console.log('Paper defeats rock')
+          }
+        }
         }
   
         if(cpuAttack == 'scissors'){
+          if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
           // user
           attackMove(currentPokemon.attack, currentPokemon.level, .8, .5, currentRivalPokemon)
+          if(currentRivalPokemon.health > 0) {
           // cpu
           attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 2, currentPokemon)
-          // console.log('Rock defeats scissors')
+          }
+        }
         }
   
         if(cpuAttack == 'rock'){
+          if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
           // user
           attackMove(currentPokemon.attack, currentPokemon.level, .8, 2, currentRivalPokemon)
+          if(currentRivalPokemon.health > 0) {
           // cpu
           attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, .5, currentPokemon)
-          // console.log('Both used rock')
+          }
+        }
         }
         break;
 
       case 'scissors':
         if(cpuAttack == 'paper'){
+          if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
           // user
           attackMove(currentPokemon.attack, currentPokemon.level, .8, 2, currentRivalPokemon)
+          if(currentRivalPokemon.health > 0) {
           // cpu
           attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, .5, currentPokemon)
-          // console.log('Paper defeats rock')
+          }
+        }
         }
   
         if(cpuAttack == 'scissors'){
+          if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
           // user
           attackMove(currentPokemon.attack, currentPokemon.level, .8, 1, currentRivalPokemon)
+          if(currentRivalPokemon.health > 0) {
           // cpu
           attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 1, currentPokemon)
-          // console.log('Rock defeats scissors')
+          }
+        }
         }
   
         if(cpuAttack == 'rock'){
+          if(currentPokemon.health > 0 && currentRivalPokemon.health > 0) {
           // user
           attackMove(currentPokemon.attack, currentPokemon.level, .8, .5, currentRivalPokemon)
+          if(currentRivalPokemon.health > 0) {
           // cpu
           attackMove(currentRivalPokemon.attack, currentRivalPokemon.level, .8, 2, currentPokemon)
-          // console.log('Both used rock')
+          }
+        }
         }
         break;
   }
