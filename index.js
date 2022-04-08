@@ -1,5 +1,9 @@
-// dataBase for pokemon characters
-var pokemonDB = [
+// state
+var gameState = {
+  userPokemon: '',
+  rivalPokemon: '',
+  // dataBase for pokemon characters
+  pokemonDB: [
     {
       name: 'charmander',
       type: 'fire',
@@ -26,29 +30,25 @@ var pokemonDB = [
       defense: 65,
       level: 1,
       img: 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
-    },
-  ]
-
-// state
-var gameState = {
-  userPokemon: '',
-  rivalPokemon: ''
+    }    
+  ],
+  elements: {
+    pokemonsEl: document.querySelector('.select-screen').querySelectorAll('.character'),
+    battleScreenEl: document.getElementById('battle-screen'),
+    attackBtnsEl: document.getElementById('battle-screen').querySelectorAll('.attack')
+  }
 }
-console.log(gameState)
 
 // elements
-var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character')
-var battleScreenEl = document.getElementById('battle-screen')
 
-var attackBtnsEl = document.getElementById('battle-screen').querySelectorAll('.attack')
-console.log(attackBtnsEl)
+console.log(gameState.elements.attackBtnsEl)
 
 
 // initial loop for character selection
 var i = 0
-while (i < pokemonsEl.length) {
+while (i < gameState.elements.pokemonsEl.length) {
   // add function to all characters on screen select
-  pokemonsEl[i].onclick = function() {
+  gameState.elements.pokemonsEl[i].onclick = function() {
     // current selected pokemons name
     var pokemonName = this.dataset.pokemon
 
@@ -63,16 +63,16 @@ while (i < pokemonsEl.length) {
     cpuPick()
 
     // change screen to battle scene
-    battleScreenEl.classList.toggle('active')
+    gameState.elements.battleScreenEl.classList.toggle('active')
         
     // select data from current user pokemon
-    gameState.currentPokemon = pokemonDB.filter(function(pokemon) {
+    gameState.currentPokemon = gameState.pokemonDB.filter(function(pokemon) {
       return pokemon.name == gameState.userPokemon
     })
     player1Img[0].src = gameState.currentPokemon[0].img
 
     // select data from current cpu pokemon
-    gameState.currentRivalPokemon = pokemonDB.filter(function(pokemon) {
+    gameState.currentRivalPokemon = gameState.pokemonDB.filter(function(pokemon) {
       return pokemon.name == gameState.rivalPokemon
     })
     player2Img[0].src = gameState.currentRivalPokemon[0].img
@@ -84,42 +84,14 @@ while (i < pokemonsEl.length) {
     
     console.log(gameState)
 
-
-    // player chooses attack
-
-    
-    // cpu health goes down
-
-
-    // cpu attack
-
-
-    // player health goes down
-
-
-    // rock > scissors
-
-    
-    // paper > rock
-    
-    
-    // scissors > paper
-
-
-    // depending on pokemon type and defense is how hard the attack is going to be and how much health it will take out
-
-
-    // then who ever get to health <= 0 loses
-
-    
   }
   i++
 }
 
 
 var a = 0
-while (a < attackBtnsEl.length) {
-  attackBtnsEl[a].onclick = function() {
+while (a < gameState.elements.attackBtnsEl.length) {
+    gameState.elements.attackBtnsEl[a].onclick = function() {
     var attackName = this.dataset.attack
     gameState.currentUserAttack = attackName
     
@@ -277,7 +249,7 @@ var randomNumber = function(min, max){
 
 
 var cpuPick = function() {
-  gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon
+  gameState.rivalPokemon = gameState.elements.pokemonsEl[randomNumber(0, 3)].dataset.pokemon
 }
 
 
