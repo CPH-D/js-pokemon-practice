@@ -140,7 +140,10 @@ var gameState = {
   },
 
   cpuPick: function () {
-    gameState.rivalPokemon = gameState.elements.pokemonsEl[gameState.randomNumber(0, 3)].dataset.pokemon
+    do {
+      gameState.rivalPokemon = gameState.elements.pokemonsEl[gameState.randomNumber(0, 3)].dataset.pokemon
+    }
+    while (gameState.userPokemon == gameState.rivalPokemon)
   },
 
   play: function (userAttack, cpuAttack) {
